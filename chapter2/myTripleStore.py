@@ -1,3 +1,5 @@
+import csv
+
 
 class SimpleGraph:
     def __init__(self):
@@ -39,4 +41,19 @@ class SimpleGraph:
         except KeyError:
             pass
 
+    def load(self, filename):
+        f = open(filename, "rb")
+        reader = csv.reader(f)
+        for sub, pred, obj in reader:
+            sub = unicode(sub, "UTF-8")
+            pred = unicode(pred, "UTF-8")
+            obj = unicode(obj, "UTF-8")
+            self.add((sub, pred, obj))
+        f.close()
 
+    def save(self, filename):
+        f = open(filename, "wb")
+        writer = csv.writer(f)
+        for sub, pred, obj in self.triples((None, None, None)):
+            writer.writerow([sub.encode("UTF-8"), pred.encode("UTF-8"), obj.encode("UTF-8")])
+        f.close()
