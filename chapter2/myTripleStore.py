@@ -57,3 +57,55 @@ class SimpleGraph:
         for sub, pred, obj in self.triples((None, None, None)):
             writer.writerow([sub.encode("UTF-8"), pred.encode("UTF-8"), obj.encode("UTF-8")])
         f.close()
+
+    def triples(self, (sub, pred, obj)):
+        # check which terms are present in order to use the correct index:
+        try:
+            if sub != None:
+                if pred != None:
+                    # sub pred obj
+                    if obj != None:
+                        if obj in self._spo[sub][pred]:
+                            yield (sub, pred, obj)
+                    # sub pred None
+                    else:
+                        for retObj in self._spo[sub][pred]:
+                            yield (sub, pred, retObj)
+                else:
+                    # sub None obj
+                    if obj != None:
+                        for retPred in self._osp[obj][sub]:
+                            yield (sub, retPred, obj)  # sub None None
+                    else:
+                        for retPred, objSet in self._spo[sub].items():
+                            for retObj in objSet:
+                                yield (sub, retPred, retObj)
+            else:
+                if pred != None:
+                    # None pred obj if obj != None:
+                    for retSub in self._pos[pred][obj]:
+                        yield (retSub, pred, obj)
+
+                    # None pred None else:
+                    for retObj, subSet in self._pos[pred].items():
+                        for retSub in subSet:
+                            yield (retSub, pred, retObj)
+
+                else:
+                    #None None obj
+                    if obj != None:
+                        for retSub, predSet in self._osp[obj].items():
+                            for retPred in predSet:
+                                yield (retSub, retPred, obj)
+
+                    #None None None
+                    else:
+                        for retSub, predSet in self._spo.items():
+                            for retPred, objSet in predSet.items():
+                                for retObj in objSet:
+                                    yield (retSub, retPred, retObj)
+        # KeyErrors occur if a query term wasn't in the index,
+        # so we yield nothing:
+        except KeyError:
+            pass
+
