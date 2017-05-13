@@ -109,3 +109,10 @@ class SimpleGraph:
         except KeyError:
             pass
 
+    def value(self, sub=None, pred=None, obj=None):
+        for retSub, retPred, retObj in self.triples((sub, pred, obj)):
+            if sub is None: return retSub
+            if pred is None: return retPred
+            if obj is None: return retObj
+            break
+        return None
