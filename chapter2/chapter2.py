@@ -18,5 +18,7 @@ if __name__=="__main__":
     print "Who are the triples with 'name' property?"
     print list(movie_graph.triples((None,'name',None)))
 
+    print "who is the director of 'blade_runner?'"
+    print movie_graph.value('blade_runner', 'directed_by', None)
 
 
