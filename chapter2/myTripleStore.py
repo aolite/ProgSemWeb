@@ -82,12 +82,15 @@ class SimpleGraph:
                                 yield (sub, retPred, retObj)
             else:
                 if pred != None:
-                    # None pred obj if obj != None:
-                    for retSub in self._pos[pred][obj]:
-                        yield (retSub, pred, obj)
+
+                    # None pred obj
+                    if obj != None:
+                        for retSub in self._pos[pred][obj]:
+                            yield (retSub, pred, obj)
 
                     # None pred None else:
                     for retObj, subSet in self._pos[pred].items():
+                        print retObj
                         for retSub in subSet:
                             yield (retSub, pred, retObj)
 
@@ -116,3 +119,4 @@ class SimpleGraph:
             if obj is None: return retObj
             break
         return None
+
