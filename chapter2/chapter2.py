@@ -21,4 +21,16 @@ if __name__=="__main__":
     print "who is the director of 'blade_runner?'"
     print movie_graph.value('blade_runner', 'directed_by', None)
 
+    print "Load movies CSV..."
+
+    movies = SimpleGraph()
+
+    movies.load("../resources/movies.csv")
+
+    print "Movies loaded"
+
+
+
+
+
 

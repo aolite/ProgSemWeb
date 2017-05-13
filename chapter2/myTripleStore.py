@@ -7,6 +7,9 @@ class SimpleGraph:
         self._pos = {}
         self._osp = {}
 
+    def __iter__(self):
+        return iter(self._spo.values())
+
     def add(self, (sub, pred, obj)):
         self._addToIndex(self._spo, sub, pred, obj)
         self._addToIndex(self._pos, pred, obj, sub)
