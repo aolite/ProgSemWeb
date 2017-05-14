@@ -29,6 +29,19 @@ if __name__=="__main__":
 
     print "Movies loaded"
 
+    print "Who is the blade runner id?"
+    bladerunnerId = movies.value(None, "name", "Blade Runner")
+
+    print "Blade runner Id: "+ bladerunnerId
+
+    bladerunnerActorIds = [actorId for _, _, actorId in movies.triples((bladerunnerId, "starring", None))]
+
+    print "Who are the blade runner actors Id?"
+
+    print "Actors ID: "+ str (bladerunnerActorIds)
+
+    print str([movies.value(actorId, "name", None) for actorId in bladerunnerActorIds])
+
 
 
 
