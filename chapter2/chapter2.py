@@ -43,6 +43,20 @@ if __name__=="__main__":
     print str([movies.value(actorId, "name", None) for actorId in bladerunnerActorIds])
 
 
+    print "In which movies Harrison Ford has participated?"
+
+    harrisonfordId = movies.value(None, "name", "Harrison Ford")
+
+    print ([movies.value(movieId, "name", None) for movieId, _, _ in movies.triples((None, "starring", harrisonfordId))])
+
+
+    print "In which films Harrison Ford has acted with Steven Spilbers as director?"
+
+    spielbergId = movies.value(None, "name", "Steven Spielberg")
+
+
+
+
 
 
 
