@@ -54,6 +54,14 @@ if __name__=="__main__":
 
     spielbergId = movies.value(None, "name", "Steven Spielberg")
 
+    spielbergMovieIds = set([movieId for movieId, _, _ in movies.triples((None, "directed_by", spielbergId))])
+
+    harrisonfordId = movies.value(None, "name", "Harrison Ford")
+
+    harrisonfordMovieIds = set([movieId for movieId, _, _ in movies.triples((None, "starring", harrisonfordId))])
+
+    print [movies.value(movieId, "name", None) for movieId in spielbergMovieIds.intersection(harrisonfordMovieIds)]
+
 
 
 
