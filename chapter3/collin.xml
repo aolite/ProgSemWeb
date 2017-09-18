@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:ns1="http://xmlns.com/foaf/0.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <ns1:Person rdf:about="http://semprog.com/people/colin">
+    <ns1:knows>
+      <ns1:Person rdf:about="http://kiwitobes.com/toby.rdf#ts">
+        <ns1:mbox rdf:resource="mailto:toby@segaran.com"/>
+        <ns1:name>Toby Segaran</ns1:name>
+      </ns1:Person>
+    </ns1:knows>
+    <ns1:knows>
+      <ns1:Person rdf:nodeID="Na8ef51576ffe439dafb4218b0aafd9d0">
+        <ns1:name>Jamie Taylor</ns1:name>
+        <ns1:mbox rdf:resource="mailto:jamie@semprog.com"/>
+      </ns1:Person>
+    </ns1:knows>
+    <ns1:name>Colin Evans</ns1:name>
+    <ns1:mbox rdf:resource="mailto:colin@metaweb.com"/>
+  </ns1:Person>
+</rdf:RDF>
